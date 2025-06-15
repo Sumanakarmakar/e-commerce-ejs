@@ -1,9 +1,10 @@
 const transporter = require("../config/emailConfig");
 
 const sendEmailVerificationRegister = async (req, user, token) => {
-  const verificationLink = `${req.protocol}://${req.headers.host}/confirmation/${
-    user.email
-  }/${token}`;
+  // const verificationLink = `${req.protocol}://${req.headers.host}/confirmation/${
+  //   user.email
+  // }/${token}`;
+  const verificationLink = `${req.get.origin}/confirmation/${user.email}/${token}`;
   // console.log("resetLink", verificationLink);
   //console.log("resetLink", transporter);
 
@@ -85,4 +86,7 @@ const sendEjsEmailVerificationForgotPW = async (req, user, token) => {
   return resetLink;
 };
 
-module.exports = { sendEmailVerificationRegister, sendEjsEmailVerificationForgotPW };
+module.exports = {
+  sendEmailVerificationRegister,
+  sendEjsEmailVerificationForgotPW,
+};
