@@ -1,0 +1,46 @@
+<!-- Breadcrumb Start -->
+<div class="breadcrumb-wrap">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Products</a></li>
+      <li class="breadcrumb-item active">My Account</li>
+    </ul>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- My Account Start -->
+<div class="my-account">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3"><%- include("./sideNav.ejs") %></div>
+      <div class="col-md-9">
+        <div class="tab-content">
+          <div
+            class="tab-pane fade show active"
+            id="dashboard-tab"
+            role="tabpanel"
+            aria-labelledby="dashboard-nav"
+          >
+            <h4>Dashboard</h4>
+            <br />
+            <div class="mb-4">
+              <img
+                src="/backend/<%= memberdata.profile_pic %>"
+                alt=""
+                height="150px"
+                width="150px"
+              />
+            </div>
+
+            <h6><strong><%= memberdata.name %></strong></h6>
+            <p>Email: <%= memberdata.email %></p>
+            <p>Phone: <%= memberdata.phone %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- My Account End -->

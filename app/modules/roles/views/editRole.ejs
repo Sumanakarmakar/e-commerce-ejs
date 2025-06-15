@@ -1,0 +1,53 @@
+<div class="mt-4">
+  <% if (successMessage && successMessage.length > 0) { %>
+  <div class="alert alert-success mt-3" role="alert"><%= successMessage %></div>
+  <% } %>
+
+  <!-- Display error message if available -->
+  <% if (errorMessage && errorMessage.length > 0) { %>
+  <div class="alert alert-danger mt-3" role="alert"><%= errorMessage %></div>
+  <% } %>
+  <form
+    action="/admin/roles/actions/update/<%= singledata._id %>"
+    method="post"
+  >
+    <div class="form-group">
+      <label for="exampleInputEmail1">Role Name : </label>
+      <input
+        type="text"
+        class="form-control"
+        name="roleName"
+        value="<%= singledata.roleName %>"
+      />
+    </div>
+
+    <div class="form-group d-flex">
+      <label class="mr-3" for="exampleCheck1">Actions : </label>
+      <div class="form-check">
+        <input name="actions" type="checkbox" id="create_record"
+        value="create_record" <%= singledata.actions.includes("create_record") ?
+        'checked' : "" %> />
+        <label for="create_record">Create Record</label>
+
+        <input name="actions" type="checkbox" class="ml-3" value="read_record"
+        id="read_record" <%= singledata.actions.includes("read_record") ?
+        'checked' : "" %> />
+        <label for="read_record">Read Record</label>
+
+        <input name="actions" type="checkbox" class="ml-3" value="update_record"
+        id="update_record" <%= singledata.actions.includes("update_record") ?
+        'checked' : "" %> />
+        <label for="update_record">Update Record</label>
+
+        <input name="actions" type="checkbox" value="delete_record"
+        id="delete_record" class="ml-3" <%=
+        singledata.actions.includes("delete_record") ? 'checked' : "" %> />
+        <label for="delete_record">Delete Record</label>
+      </div>
+    </div>
+
+    <button id="update_btn" type="submit" class="btn btn-primary">
+      Save Changes
+    </button>
+  </form>
+</div>

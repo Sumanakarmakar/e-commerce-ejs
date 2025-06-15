@@ -1,0 +1,53 @@
+<a href="/admin/category/add">
+  <button class="btn btn-success mt-4">Create Category</button>
+</a>
+
+<% if (successMessage && successMessage.length > 0) { %>
+<div class="alert alert-success mt-3" role="alert"><%= successMessage %></div>
+<% } %>
+
+<!-- Display error message if available -->
+<% if (errorMessage && errorMessage.length > 0) { %>
+<div class="alert alert-danger mt-3" role="alert"><%= errorMessage %></div>
+<% } %>
+
+<table
+  class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+>
+  <thead class="">
+    <tr>
+      <th scope="col">Sl. No.</th>
+      <th scope="col">Category Name</th>
+      <th scope="col">Products</th>
+      <th scope="col" colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% let count=1 %> 
+    <% if(categories.length>0){ %> 
+      <% categories.forEach((item,index)=>{ %>
+    <tr>
+      <th scope="row"><%= count++ %></th>
+      <td><%= item.catName %></td>
+
+      <td class="">
+        <a href="/admin/category/category-wise-products/<%= item._id %>">view products</a>
+      </td>
+
+      <td>
+        <a href="/admin/category/edit/<%= item._id %>">
+          <button id="update_btn" class="btn btn-primary">Edit</button>
+        </a>
+        <a href="/admin/category/remove/<%= item._id %>">
+          <button id="update_btn" class="btn btn-danger">Delete</button>
+        </a>
+      </td>
+    </tr>
+    <% }) %> 
+    <% }else{ %>
+    <td colspan="5">
+      <h3 class="text-center">No categories Found</h3>
+    </td>
+    <% } %>
+  </tbody>
+</table>

@@ -1,0 +1,79 @@
+<div class="mt-4">
+  <% if (successMessage && successMessage.length > 0) { %>
+  <div class="alert alert-success mt-3" role="alert"><%= successMessage %></div>
+  <% } %>
+
+  <!-- Display error message if available -->
+  <% if (errorMessage && errorMessage.length > 0) { %>
+  <div class="alert alert-danger mt-3" role="alert"><%= errorMessage %></div>
+  <% } %>
+  <div class="d-flex justify-content-center">
+    <h2>Edit your product</h2>
+  </div>
+  <form
+    action="/admin/product/update/<%= singledata._id %>"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <div class="form-group">
+      <label for="exampleInputEmail1">Title : </label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        value="<%= singledata.title %>"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Description : </label>
+      <input
+        type="text"
+        class="form-control"
+        name="description"
+        value="<%= singledata.description %>"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Category:</label>
+      <select name="categoryId" class="form-control">
+        <option value="<%= singledata.categoryId %>">
+          <%= singledata.category.catName %>
+        </option>
+        <% slicedData.forEach(cat=>{ %>
+        <option value="<%= cat._id %>"><%= cat.catName %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Price : </label>
+      <input
+        type="text"
+        class="form-control"
+        name="price"
+        value="<%= singledata.price %>"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Stock : </label>
+      <input
+        type="text"
+        class="form-control"
+        name="stock"
+        value="<%= singledata.stock %>"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Image : </label>
+      <input type="file" class="form-control" name="image" multiple />
+    </div>
+
+    <button id="update_btn" type="submit" class="btn btn-primary">
+      Save Changes
+    </button>
+  </form>
+</div>

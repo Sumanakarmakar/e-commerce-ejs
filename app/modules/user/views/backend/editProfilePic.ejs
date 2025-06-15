@@ -1,0 +1,80 @@
+<div class="row">
+    <h1 class="text-center mt-3">Member Dashboard</h1>
+    <!-- Display success message if available -->
+  <% if (successMessage && successMessage.length > 0) { %>
+    <div class="alert alert-success mt-2" role="alert"><%= successMessage %></div>
+    <% } %>
+  
+    <!-- Display error message if available -->
+    <% if (errorMessage && errorMessage.length > 0) { %>
+    <div class="alert alert-danger mt-2" role="alert"><%= errorMessage %></div>
+    <% } %>
+    <div
+      class="container mt-3 d-flex align-items-center justify-content-center"
+    >
+      <div
+        class="card d-flex align-items-center justify-content-center"
+        style="width: 500px"
+      >
+        <div class="px-3 py-3">
+          <img
+            id="initialImage"
+            src="/backend/<%= singledata.profile_pic %>"
+            class="card-img-top"
+            alt="profile_pic"
+            height="250px"
+            width="250px"
+          />
+
+          <img
+            id="imagePreview"
+            class="card-img-top"
+            alt="img_preview"
+            height="250px"
+            width="250px"
+          />
+        </div>
+        <form
+          action="/admin/profile_pic/update/<%= singledata.id %>"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="form-group">
+            <input
+              type="file"
+              class="form-control pb-3"
+              id="imgUpload"
+              accept="image/*"
+              name="profile_pic"
+            />
+          </div>
+          <button type="submit" class="btn btn-warning mb-3">Upload</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    <script>
+      // JavaScript to handle image preview
+      const initialImage = document.getElementById("initialImage");
+      const imageUpload = document.getElementById("imgUpload");
+      const imagePreview = document.getElementById("imagePreview");
+
+      imagePreview.style.display = "none";
+      imageUpload.addEventListener("change", function (event) {
+        const file = event.target.files[0]; // Get the uploaded file
+        if (file) {
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+            imagePreview.src = e.target.result; // Set the image source to the uploaded file
+            imagePreview.style.display = "block"; // Show the image
+            initialImage.style.display = "none";
+          };
+
+          reader.readAsDataURL(file); // Read the file as a data URL
+        } else {
+          imagePreview.style.display = "none"; // Hide the image preview if no file is selected
+        }
+      });
+    </script>

@@ -1,0 +1,63 @@
+<div class="row">
+  <!-- Display success message if available -->
+  <% if (successMessage && successMessage.length > 0) { %>
+  <div class="alert alert-success mt-2" role="alert"><%= successMessage %></div>
+  <% } %>
+
+  <!-- Display error message if available -->
+  <% if (errorMessage && errorMessage.length > 0) { %>
+  <div class="alert alert-danger mt-2" role="alert"><%= errorMessage %></div>
+  <% } %>
+  <div class="col-md-4">
+    <a href="/admin/roles" class="card-link text-decoration-none">
+      <div class="card mt-4 movie_card" style="width: 100%">
+        <div class="card-body">
+          <h5 class="card-title about_title">Roles</h5>
+          <p class="card_para"></p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="/admin/users" class="card-link text-decoration-none">
+      <div class="card mt-4 theatre_card" style="width: 100%">
+        <div class="card-body">
+          <h5 class="card-title about_title">Users</h5>
+          <p class="card_para"></p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="/admin/category/list" class="card-link text-decoration-none">
+      <div class="card mt-4 booking_card" style="width: 100%">
+        <div class="card-body">
+          <h5 class="card-title about_title">Categories</h5>
+          <p class="card_para"></p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="/admin/product/list" class="card-link text-decoration-none">
+      <div class="card mt-4 booking_card" style="width: 100%">
+        <div class="card-body">
+          <h5 class="card-title about_title">Products</h5>
+          <p class="card_para"></p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-4">
+    <a href="/admin/order/list" class="card-link text-decoration-none">
+      <div class="card mt-4 booking_card" style="width: 100%">
+        <div class="card-body">
+          <h5 class="card-title about_title">Orders</h5>
+          <p class="card_para"></p>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

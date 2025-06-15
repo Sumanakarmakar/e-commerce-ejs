@@ -1,0 +1,38 @@
+{
+  "name": "e-commerce_twilio",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Sumana",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "test_ecommerce_twilio",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "ejs-locals": "^1.0.2",
+    "express": "^4.21.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.1",
+    "google-libphonenumber": "^3.2.40",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "mongoose": "^8.9.5",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.10.0",
+    "nodemon": "^3.1.9",
+    "route-label": "^1.2.3",
+    "twilio": "^5.4.3",
+    "underscore": "^1.13.7"
+  }
+}

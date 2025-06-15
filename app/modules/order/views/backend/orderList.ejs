@@ -1,0 +1,101 @@
+<div class="d-flex justify-content-between mt-4">
+  <div class="float-right p-0">
+    <input
+      type="text"
+      id="searchInput"
+      class="p-1"
+      placeholder="Search order by status..."
+    />
+  </div>
+</div>
+
+<% if (successMessage && successMessage.length > 0) { %>
+<div class="alert alert-success mt-3" role="alert"><%= successMessage %></div>
+<% } %>
+
+<!-- Display error message if available -->
+<% if (errorMessage && errorMessage.length > 0) { %>
+<div class="alert alert-danger mt-3" role="alert"><%= errorMessage %></div>
+<% } %>
+
+<table class="table table-bordered table-responsive mt-2">
+  <thead class="">
+    <tr>
+      <th scope="col">Sl. No.</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Shipping Address</th>
+      <th scope="col">Price</th>
+      <th scope="col">Status</th>
+      <th scope="col">Order Details</th>
+      <th scope="col" colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody id="orderTableBody">
+    <% let count=1 %> <% if(orders.length>0){ %> <% for(let item of orders){ %>
+    <tr>
+      <th scope="row"><%= count++ %></th>
+
+      <td><%= item.customer.name %></td>
+      <td><%= item.customer.email %></td>
+      <td><%= item.customer.phone %></td>
+      <td><%= item.shippingAddress %></td>
+      <td>&#8377;<%= item.orderPrice %></td>
+      <td><%= item.status %></td>
+      <td>
+        <a href="/admin/order/customer-wise/<%= item.customerId %>">details</a>
+      </td>
+
+      <td>
+        <% if(item.status==="confirmed"){ %>
+        <a href="/admin/product/edit/<%= item._id %>">
+          <button id="update_btn" class="btn btn-primary">Shipped</button>
+        </a>
+        <% }else if(item.status==="shipped"){ %>
+        <a href="/admin/product/remove/<%= item._id %>">
+          <button id="update_btn" class="btn btn-warning">Delivered</button>
+        </a>
+        <% }else if(item.status==="delivered"){ %>
+        <a href="/admin/product/remove/<%= item._id %>">
+          <button id="update_btn" class="btn btn-warning" disabled>
+            Delivered
+          </button>
+        </a>
+        <% }else if(item.status==="cancelled"){ %>
+        <a href="/admin/product/remove/<%= item._id %>">
+          <button id="update_btn" class="btn btn-danger">Cancelled</button>
+        </a>
+        <% } %>
+      </td>
+    </tr>
+    <% } %> <% }else{ %>
+    <td colspan="5">
+      <h3 class="text-center">No Orders Found</h3>
+    </td>
+    <% } %>
+  </tbody>
+</table>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+    const userTableBody = document.getElementById("orderTableBody");
+
+    searchInput.addEventListener("keyup", function () {
+      const searchTerm = this.value.toLowerCase();
+      const rows = userTableBody.getElementsByTagName("tr");
+
+      for (let row of rows) {
+        const slno = row.cells[0].textContent.toLowerCase();
+        const status = row.cells[6].textContent.toLowerCase();
+
+        if (status.includes(searchTerm)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      }
+    });
+  });
+</script>

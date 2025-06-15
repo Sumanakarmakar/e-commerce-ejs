@@ -1,0 +1,63 @@
+<a href="/admin/roles/addrole">
+  <button class="btn btn-success mt-4">Create Role</button>
+</a>
+
+<% if (successMessage && successMessage.length > 0) { %>
+<div class="alert alert-success mt-3" role="alert"><%= successMessage %></div>
+<% } %>
+
+<!-- Display error message if available -->
+<% if (errorMessage && errorMessage.length > 0) { %>
+<div class="alert alert-danger mt-3" role="alert"><%= errorMessage %></div>
+<% } %>
+
+<table
+  class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+>
+  <thead class="">
+    <tr>
+      <th scope="col">Sl. No.</th>
+      <th scope="col">RoleName</th>
+      <th scope="col" colspan="5">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% let count=1 %> <% roles.forEach((item,index)=>{ %>
+    <tr>
+      <th scope="row"><%= count++ %></th>
+      <td><%= item.roleName %></td>
+
+      <td class="">
+        <input name="actions" type="checkbox" id="create_record"
+        value="create_record" <%= item.actions.includes("create_record") ?
+        'checked' : "" %> />
+        <label for="create_record">Create Record</label>
+      </td>
+      <td>
+        <input name="actions" type="checkbox" class="ml-3" value="read_record"
+        id="read_record" <%= item.actions.includes("read_record") ? 'checked' :
+        "" %> />
+        <label for="read_record">Read Record</label>
+      </td>
+      <td>
+        <input name="actions" type="checkbox" class="ml-3" value="update_record"
+        id="update_record" <%= item.actions.includes("update_record") ?
+        'checked' : "" %> />
+        <label for="update_record">Update Record</label>
+      </td>
+      <td>
+        <input name="actions" type="checkbox" value="delete_record"
+        id="delete_record" class="ml-3" <%=
+        item.actions.includes("delete_record") ? 'checked' : "" %> />
+        <label for="delete_record">Delete Record</label>
+      </td>
+
+      <td>
+        <a href="/admin/roles/details/<%= item._id %>">
+          <button id="update_btn" class="btn btn-primary">Edit</button>
+        </a>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

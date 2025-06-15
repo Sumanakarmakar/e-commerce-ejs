@@ -1,0 +1,53 @@
+<div class="row">
+  <h1 class="text-center mt-3">Member Dashboard</h1>
+  <!-- Display success message if available -->
+  <% if (successMessage && successMessage.length > 0) { %>
+  <div class="alert alert-success mt-2" role="alert"><%= successMessage %></div>
+  <% } %>
+
+  <!-- Display error message if available -->
+  <% if (errorMessage && errorMessage.length > 0) { %>
+  <div class="alert alert-danger mt-2" role="alert"><%= errorMessage %></div>
+  <% } %>
+  <div class="container mt-3 d-flex align-items-center justify-content-center">
+    <div
+      class="card d-flex align-items-center justify-content-center"
+      style="width: 500px"
+    >
+      <div
+        class="px-3 py-3"
+        style="border-radius: 50%; height: 250px; width: 250px"
+      >
+        <img
+          src="/backend/<%= singledata.profile_pic %>"
+          class="card-img-top"
+          alt="profile_pic"
+          height="250px"
+          width="250px"
+        />
+        <a href="/admin/profile_pic/edit/<%= data.id %>" class="text-dark">
+          <i
+            class="fas fa-edit"
+            style="position: absolute; top: 5%; left: 30%"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="Edit Image"
+          ></i>
+        </a>
+      </div>
+
+      <div class="card-body mt-3">
+        <h5 class="card-title">Name: <%= singledata.name %></h5>
+        <h5 class="card-title">Email: <%= singledata.email %></h5>
+        <h5 class="card-title">Phone: <%= singledata.phone %></h5>
+
+        <a href="/admin/profile/edit/<%= data.id %>" class="btn btn-primary"
+          >Edit Profile</a
+        >
+        <a href="/admin/password/edit/<%= data.id %>" class="btn btn-warning"
+          >Update Password</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

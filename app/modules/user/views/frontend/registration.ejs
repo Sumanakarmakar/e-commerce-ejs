@@ -1,0 +1,91 @@
+<!-- Breadcrumb Start -->
+<div class="breadcrumb-wrap">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item active">Register</li>
+    </ul>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+
+<% if (successMessage && successMessage.length > 0) { %>
+<div class="alert alert-success mt-3" role="alert"><%= successMessage %></div>
+<% } %>
+
+<!-- Display error message if available -->
+<% if (errorMessage && errorMessage.length > 0) { %>
+<div class="alert alert-danger mt-3" role="alert"><%= errorMessage %></div>
+<% } %>
+
+<!-- Login Start -->
+<div class="login">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <form
+          class="register-form"
+          action="/user/create"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="row">
+            <div class="col-md-6">
+              <label>Name</label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Name"
+                name="name"
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label>E-mail</label>
+              <input
+                class="form-control"
+                type="email"
+                placeholder="E-mail"
+                name="email"
+              />
+            </div>
+            <div class="col-md-6">
+              <label>Mobile No</label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Mobile No."
+                name="phone"
+              />
+            </div>
+            <div class="col-md-6">
+              <label>Role</label>
+              <select name="roleId" class="form-control">
+                <option value="<%= slicedRole._id %>">
+                  <%= slicedRole.roleName %>
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label>Password</label>
+              <input
+                class="form-control"
+                type="password"
+                placeholder="Password"
+                name="password"
+              />
+            </div>
+            <div class="col-md-6">
+              <label>Profile Image</label>
+              <input class="form-control" type="file" name="profile_pic" />
+            </div>
+            <div class="col-md-12">
+              <button class="btn" type="submit">Register</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Login End -->

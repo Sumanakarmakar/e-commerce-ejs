@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <%- include('../partials/sidebar.ejs') %>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="home-tab">
+                <div
+                  class="d-sm-flex align-items-center justify-content-between border-bottom"
+                ></div>
+
+                <!-- main section -->
+                <%- body %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <%- include('../partials/partialFooter.ejs') %>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

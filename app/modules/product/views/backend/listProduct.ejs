@@ -1,0 +1,95 @@
+<div class="d-flex justify-content-between mt-4">
+  <a href="/admin/product/add">
+    <button class="btn btn-success">Create Product</button>
+  </a>
+
+  <div class="float-right p-0">
+    <input type="text" id="searchInput" placeholder="Search product..." />
+  </div>
+</div>
+
+<% if (successMessage && successMessage.length > 0) { %>
+<div class="alert alert-success mt-3" role="alert"><%= successMessage %></div>
+<% } %>
+
+<!-- Display error message if available -->
+<% if (errorMessage && errorMessage.length > 0) { %>
+<div class="alert alert-danger mt-3" role="alert"><%= errorMessage %></div>
+<% } %>
+
+<table
+  class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+>
+  <thead class="">
+    <tr>
+      <th scope="col">Sl. No.</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Image</th>
+      <th scope="col" colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody id="serviceTableBody">
+    <% let count=1 %> <% if(products.length>0){ %> <%
+    products.forEach((item,index)=>{ %>
+    <tr>
+      <th scope="row"><%= count++ %></th>
+      <td><%= item.title %></td>
+      <td><%= item.description.slice(0,30) %>...</td>
+      <td><%= item.category_details.catName %></td>
+      <td><%= item.price %></td>
+      <td><%= item.stock %></td>
+      <td><img src="/backend/<%= item.image[0] %>" alt="pImg" /></td>
+
+      <td>
+        <a href="/admin/product/edit/<%= item._id %>">
+          <button id="update_btn" class="btn btn-primary">Edit</button>
+        </a>
+        <a href="/admin/product/remove/<%= item._id %>">
+          <button id="update_btn" class="btn btn-danger">Delete</button>
+        </a>
+      </td>
+    </tr>
+    <% }) %> <% }else{ %>
+    <td colspan="5">
+      <h3 class="text-center">No categories Found</h3>
+    </td>
+    <% } %>
+  </tbody>
+</table>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+    const userTableBody = document.getElementById("serviceTableBody");
+
+    searchInput.addEventListener("keyup", function () {
+      const searchTerm = this.value.toLowerCase();
+      const rows = userTableBody.getElementsByTagName("tr");
+
+      for (let row of rows) {
+        const slno = row.cells[0].textContent.toLowerCase();
+        const title = row.cells[1].textContent.toLowerCase();
+        const description = row.cells[2].textContent.toLowerCase();
+        const category = row.cells[3].textContent.toLowerCase();
+        const price = row.cells[4].textContent.toLowerCase();
+        const stock = row.cells[5].textContent.toLowerCase();
+
+        if (
+          title.includes(searchTerm) ||
+          description.includes(searchTerm) ||
+          category.includes(searchTerm) ||
+          price.includes(searchTerm) ||
+          stock.includes(searchTerm)
+        ) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      }
+    });
+  });
+</script>
