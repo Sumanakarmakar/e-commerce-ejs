@@ -16,6 +16,9 @@ dotenv.config();
 const app = express();
 connectDB();
 
+app.set('trust proxy', true);
+
+
 const namedRouter = require("route-label")(app);
 const appConfig = require(resolve(join(__dirname, "app/config", "index")));
 
